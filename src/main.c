@@ -5,9 +5,9 @@
 int main(void) {
 	  Init_SPI1();  
     OutputPIN_Init();
-		UART0_Initialize(9600);
+		UART0_Initialize(115200);
 
-    Test_SPI_Loopback();  
+    Test_Loopback();  
 
     return 0;
 }

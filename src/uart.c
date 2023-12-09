@@ -16,7 +16,7 @@ uint8_t UART0_Receive(void) {
 
 void UART0_Initialize(uint32_t baud_rate) {
 	
-	uint16_t osr = 16;
+	uint16_t osr = 4;
 	uint16_t sbr;
 	
 	SIM->SCGC4 = SIM->SCGC4 | SIM_SCGC4_UART0_MASK;
@@ -39,18 +39,31 @@ void UART0_Initialize(uint32_t baud_rate) {
 	
 	
 	// Setarea baud rate-ului si a ratei de supraesantionare
-	sbr = (uint16_t)((DEFAULT_SYSTEM_CLOCK)/(baud_rate * (osr)));
+	sbr = (uint16_t)((DEFAULT_SYSTEM_CLOCK)/(baud_rate * (osr)*4));
 	UART0->BDH &= UART0_BDH_SBR_MASK;
 	UART0->BDH |= UART0_BDH_SBR(sbr>>8);
 	UART0->BDL = UART_BDL_SBR(sbr);
-	UART0->C4 |= UART0_C4_OSR(osr - 1);
+	UART0->C4 |= UART0_C4_OSR(osr-1);
+	
+	
+	/*
+	uint32_t sbr = 48000000UL / ((osr + 1)*baud_rate);
+	uint8_t temp = UART0->BDH & ~(UART0_BDH_SBR(0x1F));
+	UART0->BDH = temp | UART0_BDH_SBR(((sbr & 0x1F00)>> 8));
+	UART0->BDL = (uint8_t)(sbr & UART_BDL_SBR_MASK);
+	UART0->C4 |= UART0_C4_OSR(osr);
+	*/
 			
-	// Setarea numarului de biti de date la 8 si fara bit de paritate
+	// Set Data Frame Order to MSB First
+	UART0->S2 = UART0_S2_MSBF(0);  // 0 for MSB first
+	
+	// Set Data Inversion (TX Inverted)
+	//UART0->C3 |= UART0_C3_TXINV_MASK;  // 1 to invert TX
+	
+	// Set the number of data bits to 8 and disable parity
 	UART0->C1 = UART0_C1_M(0) | UART0_C1_PE(0);
 	
-	// Transmisie incepand cu LSB
-	UART0->S2 = UART0_S2_MSBF(0);
-	
-	UART0->C2 |= ((UART_C2_RE_MASK) | (UART_C2_TE_MASK));
+	// Enable the receiver and transmitter
+	UART0->C2 |= (UART_C2_RE_MASK | UART_C2_TE_MASK);
 		
 }

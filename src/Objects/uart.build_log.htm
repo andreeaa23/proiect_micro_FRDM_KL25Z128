@@ -21,12 +21,55 @@ Target DLL:      CMSIS_AGDI.dll V1.33.15.0
 Dialog DLL:      TARMCM1.DLL V1.14.6.0
  
 <h2>Project:</h2>
-D:\anul 4\micro\facut de mn\uart.uvprojx
+D:\anul 4\micro\proiect\proiect_micro_FRDM_KL25Z128\src\uart.uvprojx
 Project File Date:  12/06/2023
 
 <h2>Output:</h2>
 *** Using Compiler 'V6.19', folder: 'C:\Keil_v5\ARM\ARMCLANG\Bin'
-Build target 'Target 1'
+Rebuild target 'Target 1'
+main.c(1): warning: In file included from...
+./gpio.h(5): warning: no newline at end of file [-Wnewline-eof]
+void Test_Loopback(void);
+                         ^
+main.c(2): warning: In file included from...
+./spi.h(4): warning: no newline at end of file [-Wnewline-eof]
+void Test_SPI_Loopback(void);
+                             ^
+main.c(3): warning: In file included from...
+./uart.h(6): warning: no newline at end of file [-Wnewline-eof]
+void UART0_IRQHandler(void);
+                            ^
+main.c(13): warning: no newline at end of file [-Wnewline-eof]
+}
+ ^
+4 warnings generated.
+compiling main.c...
+compiling system_MKL25Z4.c...
+gpio.c(1): warning: In file included from...
+./gpio.h(5): warning: no newline at end of file [-Wnewline-eof]
+void Test_Loopback(void);
+                         ^
+gpio.c(2): warning: In file included from...
+./uart.h(6): warning: no newline at end of file [-Wnewline-eof]
+void UART0_IRQHandler(void);
+                            ^
+gpio.c(4): warning: // comments are not allowed in this language [-Wcomment]
+#define RED_LED_PIN (18) // PORT B
+                         ^
+gpio.c(92): warning: function 'Test_Loopback' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+{
+^
+4 warnings generated.
+compiling gpio.c...
+uart.c(1): warning: In file included from...
+./uart.h(6): warning: no newline at end of file [-Wnewline-eof]
+void UART0_IRQHandler(void);
+                            ^
+uart.c(4): warning: // comments are not allowed in this language [-Wcomment]
+        // Utilizam masca TDRE pentru a verifica
+        ^
+2 warnings generated.
+compiling uart.c...
 spi.c(1): warning: In file included from...
 ./spi.h(4): warning: no newline at end of file [-Wnewline-eof]
 void Test_SPI_Loopback(void);
@@ -35,26 +78,22 @@ spi.c(2): warning: In file included from...
 ./gpio.h(5): warning: no newline at end of file [-Wnewline-eof]
 void Test_Loopback(void);
                          ^
+spi.c(3): warning: In file included from...
+./uart.h(6): warning: no newline at end of file [-Wnewline-eof]
+void UART0_IRQHandler(void);
+                            ^
 spi.c(6): warning: // comments are not allowed in this language [-Wcomment]
         //enable clock to SPI1
         ^
 spi.c(52): warning: function 'Test_SPI_Loopback' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
 {
 ^
-4 warnings generated.
+5 warnings generated.
 compiling spi.c...
-gpio.c(1): warning: In file included from...
-./gpio.h(5): warning: no newline at end of file [-Wnewline-eof]
-void Test_Loopback(void);
-                         ^
-gpio.c(4): warning: // comments are not allowed in this language [-Wcomment]
-#define RED_LED_PIN (18) // PORT B
-                         ^
-2 warnings generated.
-compiling gpio.c...
+assembling startup_MKL25Z4.s...
 linking...
-Program Size: Code=1648 RO-data=220 RW-data=0 ZI-data=352  
-".\Objects\uart.axf" - 0 Error(s), 6 Warning(s).
+Program Size: Code=1660 RO-data=208 RW-data=0 ZI-data=352  
+".\Objects\uart.axf" - 0 Error(s), 15 Warning(s).
 
 <h2>Software Packages used:</h2>
 
