@@ -88,3 +88,29 @@ void Control_RGB_LEDs(uint8_t red, uint8_t green, uint8_t blue, uint8_t black) {
     }
 }
 
+void Test_Loopback(void)
+{
+	uint8_t in;
+	while (1)
+	{
+    in = UART0_Receive();
+    if (in == 'R' | in =='r')
+    {
+        // Red: error, data doesn't match
+        Control_RGB_LEDs(1, 0, 0, 0); // Turn on the red LED
+    }
+    else if (in == 'B' | in =='b')
+    {
+        Control_RGB_LEDs(0, 0, 1, 0); // Turn on the blue LED
+    }
+    else if (in == 'G' | in == 'g')
+    {
+        Control_RGB_LEDs(0, 1, 0, 0); // Turn on the green LED
+    }
+		else{
+			Control_RGB_LEDs(0, 0, 0, 1); // Turn off leds
+		}
+    UART0_Transmit(in);
+	}
+}
+
