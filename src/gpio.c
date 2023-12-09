@@ -94,16 +94,16 @@ void Test_Loopback(void)
 	while (1)
 	{
     in = UART0_Receive();
-    if (in == 'R' | in =='r')
+    if (in == 0x4A || in ==0x4E)
     {
         // Red: error, data doesn't match
         Control_RGB_LEDs(1, 0, 0, 0); // Turn on the red LED
     }
-    else if (in == 'B' | in =='b')
+    else if (in == 0x42 || in ==0x46)
     {
         Control_RGB_LEDs(0, 0, 1, 0); // Turn on the blue LED
     }
-    else if (in == 'G' | in == 'g')
+    else if (in == 0xE2 || in == 0xE6)
     {
         Control_RGB_LEDs(0, 1, 0, 0); // Turn on the green LED
     }

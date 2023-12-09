@@ -22,7 +22,7 @@ Dialog DLL:      TARMCM1.DLL V1.14.6.0
  
 <h2>Project:</h2>
 D:\anul 4\micro\proiect\proiect_micro_FRDM_KL25Z128\src\uart.uvprojx
-Project File Date:  12/06/2023
+Project File Date:  12/09/2023
 
 <h2>Output:</h2>
 *** Using Compiler 'V6.19', folder: 'C:\Keil_v5\ARM\ARMCLANG\Bin'
@@ -39,12 +39,21 @@ main.c(3): warning: In file included from...
 ./uart.h(6): warning: no newline at end of file [-Wnewline-eof]
 void UART0_IRQHandler(void);
                             ^
-main.c(13): warning: no newline at end of file [-Wnewline-eof]
+main.c(4): warning: In file included from...
+./adc.h(8): warning: no newline at end of file [-Wnewline-eof]
+void SND_SensorRez(void);
+                         ^
+main.c(7): warning: // comments are not allowed in this language [-Wcomment]
+          //Init_SPI1();  
+          ^
+main.c(16): warning: no newline at end of file [-Wnewline-eof]
 }
  ^
-4 warnings generated.
+main.c(15): warning: 'return' will never be executed [-Wunreachable-code-return]
+    return 0;
+           ^
+7 warnings generated.
 compiling main.c...
-compiling system_MKL25Z4.c...
 gpio.c(1): warning: In file included from...
 ./gpio.h(5): warning: no newline at end of file [-Wnewline-eof]
 void Test_Loopback(void);
@@ -61,15 +70,7 @@ gpio.c(92): warning: function 'Test_Loopback' could be declared with attribute '
 ^
 4 warnings generated.
 compiling gpio.c...
-uart.c(1): warning: In file included from...
-./uart.h(6): warning: no newline at end of file [-Wnewline-eof]
-void UART0_IRQHandler(void);
-                            ^
-uart.c(4): warning: // comments are not allowed in this language [-Wcomment]
-        // Utilizam masca TDRE pentru a verifica
-        ^
-2 warnings generated.
-compiling uart.c...
+compiling system_MKL25Z4.c...
 spi.c(1): warning: In file included from...
 ./spi.h(4): warning: no newline at end of file [-Wnewline-eof]
 void Test_SPI_Loopback(void);
@@ -90,10 +91,38 @@ spi.c(52): warning: function 'Test_SPI_Loopback' could be declared with attribut
 ^
 5 warnings generated.
 compiling spi.c...
+adc.c(1): warning: In file included from...
+./adc.h(8): warning: no newline at end of file [-Wnewline-eof]
+void SND_SensorRez(void);
+                         ^
+adc.c(2): warning: In file included from...
+./uart.h(6): warning: no newline at end of file [-Wnewline-eof]
+void UART0_IRQHandler(void);
+                            ^
+adc.c(5): warning: // comments are not allowed in this language [-Wcomment]
+#define SOUND_SENSOR_CH (11) // PTC2
+                             ^
+adc.c(79): warning: mixing declarations and code is a C99 extension [-Wdeclaration-after-statement]
+        uint16_t calibration_var = 0x0000;
+                 ^
+adc.c(206): warning: no newline at end of file [-Wnewline-eof]
+}
+ ^
+5 warnings generated.
+compiling adc.c...
+uart.c(1): warning: In file included from...
+./uart.h(6): warning: no newline at end of file [-Wnewline-eof]
+void UART0_IRQHandler(void);
+                            ^
+uart.c(4): warning: // comments are not allowed in this language [-Wcomment]
+        // Utilizam masca TDRE pentru a verifica
+        ^
+2 warnings generated.
+compiling uart.c...
 assembling startup_MKL25Z4.s...
 linking...
-Program Size: Code=1660 RO-data=208 RW-data=0 ZI-data=352  
-".\Objects\uart.axf" - 0 Error(s), 15 Warning(s).
+Program Size: Code=6384 RO-data=400 RW-data=0 ZI-data=360  
+".\Objects\uart.axf" - 0 Error(s), 23 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -123,7 +152,7 @@ Package Vendor: Keil
       Source file:   Device/Source/system_MKL25Z4.c
       Source file:   Device/Source/ARM/startup_MKL25Z4.s
       Include file:  Device/Source/system_MKL25Z4.h
-Build Time Elapsed:  00:00:00
+Build Time Elapsed:  00:00:01
 </pre>
 </body>
 </html>
