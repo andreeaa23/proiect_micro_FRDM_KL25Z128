@@ -1,6 +1,5 @@
 --cpu Cortex-M0+
 ".\objects\gpio.o"
-".\objects\spi.o"
 ".\objects\main.o"
 ".\objects\uart.o"
 ".\objects\adc.o"
