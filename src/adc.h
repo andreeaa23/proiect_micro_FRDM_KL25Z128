@@ -1,8 +1,9 @@
 #include "MKL25Z4.h"
 
-extern uint16_t lastValue;
-
 void ADC0_Init(void);
 int ADC0_Calibrate(void);
+uint8_t ADC0_Read(void);
 void ADC0_IRQHandler(void);
-void SND_SensorRez(void);
+
+volatile extern uint8_t flag;
+extern uint8_t analog_input;

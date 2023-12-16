@@ -10,7 +10,7 @@
       <TargetName>Target 1</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
-      <pCCUsed>6180000::V6.18::ARMCLANG</pCCUsed>
+      <pCCUsed>6190000::V6.19::ARMCLANG</pCCUsed>
       <uAC6>1</uAC6>
       <TargetOption>
         <TargetCommonOption>
@@ -385,6 +385,31 @@
           <GroupName>Source Group 1</GroupName>
           <Files>
             <File>
+              <FileName>main.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\main.c</FilePath>
+            </File>
+            <File>
+              <FileName>Adc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Adc.c</FilePath>
+            </File>
+            <File>
+              <FileName>Adc.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Adc.h</FilePath>
+            </File>
+            <File>
+              <FileName>ClockSettings.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\ClockSettings.c</FilePath>
+            </File>
+            <File>
+              <FileName>ClockSettings.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\ClockSettings.h</FilePath>
+            </File>
+            <File>
               <FileName>gpio.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\gpio.c</FilePath>
@@ -395,14 +420,24 @@
               <FilePath>.\gpio.h</FilePath>
             </File>
             <File>
-              <FileName>main.c</FileName>
+              <FileName>Pit.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\main.c</FilePath>
+              <FilePath>.\Pit.c</FilePath>
             </File>
             <File>
-              <FileName>uart.h</FileName>
+              <FileName>Pit.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\uart.h</FilePath>
+              <FilePath>.\Pit.h</FilePath>
+            </File>
+            <File>
+              <FileName>Pwm.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Pwm.c</FilePath>
+            </File>
+            <File>
+              <FileName>Pwm.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Pwm.h</FilePath>
             </File>
             <File>
               <FileName>uart.c</FileName>
@@ -410,14 +445,9 @@
               <FilePath>.\uart.c</FilePath>
             </File>
             <File>
-              <FileName>adc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\adc.c</FilePath>
-            </File>
-            <File>
-              <FileName>adc.h</FileName>
+              <FileName>uart.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\adc.h</FilePath>
+              <FilePath>.\uart.h</FilePath>
             </File>
           </Files>
         </Group>

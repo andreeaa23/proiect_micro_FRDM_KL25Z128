@@ -3,79 +3,150 @@
 <pre>
 <h1>µVision Build Log</h1>
 <h2>Tool Versions:</h2>
-IDE-Version: µVision V5.37.0.0
+IDE-Version: µVision V5.38.0.0
 Copyright (C) 2022 ARM Ltd and ARM Germany GmbH. All rights reserved.
-License Information: Andreea-Ioana Dumitru, MTA, LIC=----
+License Information: Mocanu Razvan, no company, LIC=----
  
 Tool Versions:
-Toolchain:       MDK-Lite  Version: 5.37.0.0
+Toolchain:       MDK-Lite  Version: 5.38.0.0
 Toolchain Path:  C:\Keil_v5\ARM\ARMCLANG\Bin
-C Compiler:      ArmClang.exe V6.18
-Assembler:       Armasm.exe V6.18
-Linker/Locator:  ArmLink.exe V6.18
-Library Manager: ArmAr.exe V6.18
-Hex Converter:   FromElf.exe V6.18
-CPU DLL:         SARMCM3.DLL V5.37.0.0
+C Compiler:      ArmClang.exe V6.19
+Assembler:       Armasm.exe V6.19
+Linker/Locator:  ArmLink.exe V6.19
+Library Manager: ArmAr.exe V6.19
+Hex Converter:   FromElf.exe V6.19
+CPU DLL:         SARMCM3.DLL V5.38.0.0
 Dialog DLL:      DARMCM1.DLL V1.19.6.0
-Target DLL:      CMSIS_AGDI.dll V1.33.12.0
+Target DLL:      CMSIS_AGDI.dll V1.33.15.0
 Dialog DLL:      TARMCM1.DLL V1.14.6.0
  
 <h2>Project:</h2>
-D:\proiect_micro_FRDM_KL25Z128\src\uart.uvprojx
-Project File Date:  12/10/2023
+D:\anul 4\micro\proiect\proiect_micro_FRDM_KL25Z128\src\uart.uvprojx
+Project File Date:  12/16/2023
 
 <h2>Output:</h2>
-*** Using Compiler 'V6.18', folder: 'C:\Keil_v5\ARM\ARMCLANG\Bin'
-Build target 'Target 1'
-adc.c(1): warning: In file included from...
-./adc.h(9): warning: no newline at end of file [-Wnewline-eof]
-float AnalogToDecibels(uint8_t);
-                                ^
-adc.c(2): warning: In file included from...
-./uart.h(6): warning: no newline at end of file [-Wnewline-eof]
-void UART0_IRQHandler(void);
-                            ^
-adc.c(5): warning: // comments are not allowed in this language [-Wcomment]
-#define SOUND_SENSOR_CH (11) // PTC2
+*** Using Compiler 'V6.19', folder: 'C:\Keil_v5\ARM\ARMCLANG\Bin'
+Rebuild target 'Target 1'
+Pwm.c(3): warning: // comments are not allowed in this language [-Wcomment]
+#define OSCILLOSCOPE_PIN (5) // PORT A , PIN 1
                              ^
-adc.c(76): warning: mixing declarations and code is a C99 extension [-Wdeclaration-after-statement]
-    uint8_t calibration_var = 0x00;
-            ^
-adc.c(121): warning: implicit conversion loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
-    float voltage = (float)analogInput / 255.0 * VREF;
-          ~~~~~~~   ~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~
-adc.c(121): warning: implicit conversion increases floating-point precision: 'float' to 'double' [-Wdouble-promotion]
-    float voltage = (float)analogInput / 255.0 * VREF;
-                    ^~~~~~~~~~~~~~~~~~ ~
-adc.c(124): warning: implicit conversion loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
-    float spl_dB = SPL_REF + 20 * log10(voltage / VREF);
-          ~~~~~~   ~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~
-adc.c(124): warning: implicit conversion increases floating-point precision: 'float' to 'double' [-Wdouble-promotion]
-    float spl_dB = SPL_REF + 20 * log10(voltage / VREF);
-                                        ^~~~~~~ ~
-adc.c(151): warning: implicit conversion loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
-    float voltage = (float)analog_input / 255.0 * VREF;
-          ~~~~~~~   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~
-adc.c(151): warning: implicit conversion increases floating-point precision: 'float' to 'double' [-Wdouble-promotion]
-    float voltage = (float)analog_input / 255.0 * VREF;
-                    ^~~~~~~~~~~~~~~~~~~ ~
-adc.c(154): warning: implicit conversion loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
-    float dbValue = SPL_REF + 20 * log10(voltage / VREF);
-          ~~~~~~~   ~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~
-adc.c(154): warning: implicit conversion increases floating-point precision: 'float' to 'double' [-Wdouble-promotion]
-    float dbValue = SPL_REF + 20 * log10(voltage / VREF);
-                                         ^~~~~~~ ~
-adc.c(151): warning: mixing declarations and code is a C99 extension [-Wdeclaration-after-statement]
-    float voltage = (float)analog_input / 255.0 * VREF;
-          ^
-adc.c(188): warning: no newline at end of file [-Wnewline-eof]
+1 warning generated.
+compiling Pwm.c...
+ClockSettings.c(19): warning: // comments are not allowed in this language [-Wcomment]
+        // MCGOUTCLOCK are ca si iesire, selectia FLL
+        ^
+ClockSettings.c(3): warning: no previous extern declaration for non-static variable 'base_tick' [-Wmissing-variable-declarations]
+uint16_t base_tick;
+         ^
+ClockSettings.c(3): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+uint16_t base_tick;
+^
+ClockSettings.c(4): warning: no previous extern declaration for non-static variable 'tick_50ms' [-Wmissing-variable-declarations]
+uint16_t tick_50ms;
+         ^
+ClockSettings.c(4): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+uint16_t tick_50ms;
+^
+ClockSettings.c(5): warning: no previous extern declaration for non-static variable 'tick_100ms' [-Wmissing-variable-declarations]
+uint16_t tick_100ms;
+         ^
+ClockSettings.c(5): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+uint16_t tick_100ms;
+^
+ClockSettings.c(6): warning: no previous extern declaration for non-static variable 'tick_500ms' [-Wmissing-variable-declarations]
+uint16_t tick_500ms;
+         ^
+ClockSettings.c(6): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+uint16_t tick_500ms;
+^
+ClockSettings.c(7): warning: no previous extern declaration for non-static variable 'tick_1s' [-Wmissing-variable-declarations]
+uint16_t tick_1s;
+         ^
+ClockSettings.c(7): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+uint16_t tick_1s;
+^
+6 warnings generated.
+compiling ClockSettings.c...
+Adc.c(1): warning: In file included from...
+./Adc.h(9): warning: no newline at end of file [-Wnewline-eof]
+extern uint8_t analog_input;
+                            ^
+Adc.c(2): warning: non-portable path to file '"uart.h"'; specified path differs in case from file name on disk [-Wnonportable-include-path]
+#include "Uart.h"
+         ^~~~~~~~
+         "uart.h"
+Adc.c(4): warning: // comments are not allowed in this language [-Wcomment]
+#define ADC_CHANNEL (11) // PORT C PIN 1
+                         ^
+Adc.c(72): warning: mixing declarations and code is a C99 extension [-Wdeclaration-after-statement]
+        uint16_t calibration_var = 0x0000;
+                 ^
+4 warnings generated.
+compiling Adc.c...
+Pit.c(1): warning: In file included from...
+./Pit.h(3): warning: // comments are not allowed in this language [-Wcomment]
+void PIT_Init(void); // Functie de initializarea a modulului periferic
+                     ^
+./Pit.h(5): warning: no newline at end of file [-Wnewline-eof]
+uint8_t UTILS_PrintTimer(uint32_t value); // Functie menita sa printeze o valoare numarata in formatul MM:SS
+                                                                                                            ^
+Pit.c(2): warning: In file included from...
+./gpio.h(7): warning: no newline at end of file [-Wnewline-eof]
+void InitPIT(void);
+                   ^
+Pit.c(3): warning: no previous extern declaration for non-static variable 'ledState' [-Wmissing-variable-declarations]
+uint8_t ledState = 0;
+        ^
+Pit.c(3): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+uint8_t ledState = 0;
+^
+Pit.c(6): warning: // comments are not allowed in this language [-Wcomment]
+        // Activarea semnalului de ceas pentru perifericul PIT
+        ^
+Pit.c(64): warning: no newline at end of file [-Wnewline-eof]
 }
  ^
-14 warnings generated.
-compiling adc.c...
+6 warnings generated.
+compiling Pit.c...
+uart.c(4): warning: // comments are not allowed in this language [-Wcomment]
+        // Utilizam masca TDRE pentru a verifica
+        ^
+1 warning generated.
+compiling uart.c...
+gpio.c(1): warning: In file included from...
+./gpio.h(7): warning: no newline at end of file [-Wnewline-eof]
+void InitPIT(void);
+                   ^
+gpio.c(5): warning: // comments are not allowed in this language [-Wcomment]
+#define RED_LED_PIN (18) // PORT B
+                         ^
+2 warnings generated.
+compiling gpio.c...
+main.c(1): warning: In file included from...
+./Adc.h(9): warning: no newline at end of file [-Wnewline-eof]
+extern uint8_t analog_input;
+                            ^
+main.c(3): warning: In file included from...
+./Pit.h(3): warning: // comments are not allowed in this language [-Wcomment]
+void PIT_Init(void); // Functie de initializarea a modulului periferic
+                     ^
+./Pit.h(5): warning: no newline at end of file [-Wnewline-eof]
+uint8_t UTILS_PrintTimer(uint32_t value); // Functie menita sa printeze o valoare numarata in formatul MM:SS
+                                                                                                            ^
+main.c(4): warning: In file included from...
+./gpio.h(7): warning: no newline at end of file [-Wnewline-eof]
+void InitPIT(void);
+                   ^
+main.c(8): warning: // comments are not allowed in this language [-Wcomment]
+#define VREF 3.3  // Example reference voltage in volts
+                  ^
+5 warnings generated.
+compiling main.c...
+assembling startup_MKL25Z4.s...
+compiling system_MKL25Z4.c...
 linking...
-Program Size: Code=7064 RO-data=400 RW-data=0 ZI-data=360  
-".\Objects\uart.axf" - 0 Error(s), 14 Warning(s).
+Program Size: Code=2988 RO-data=208 RW-data=0 ZI-data=376  
+".\Objects\uart.axf" - 0 Error(s), 25 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -94,8 +165,8 @@ Package Vendor: Keil
 <h2>Collection of Component include folders:</h2>
   ./RTE/Device/MKL25Z128xxx4
   ./RTE/_Target_1
-  C:/Users/Deea/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include
-  C:/Users/Deea/AppData/Local/Arm/Packs/Keil/Kinetis_KLxx_DFP/1.15.1/Device/Include
+  C:/Users/danda/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include
+  C:/Users/danda/AppData/Local/Arm/Packs/Keil/Kinetis_KLxx_DFP/1.15.1/Device/Include
 
 <h2>Collection of Component Files used:</h2>
 
@@ -105,7 +176,7 @@ Package Vendor: Keil
       Source file:   Device/Source/ARM/startup_MKL25Z4.s
       Source file:   Device/Source/system_MKL25Z4.c
       Include file:  Device/Source/system_MKL25Z4.h
-Build Time Elapsed:  00:00:00
+Build Time Elapsed:  00:00:01
 </pre>
 </body>
 </html>
