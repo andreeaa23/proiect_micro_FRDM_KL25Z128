@@ -1,5 +1,4 @@
-#include "Adc.h"
-#include "Uart.h"
+#include "adc.h"
 
 #define ADC_CHANNEL (11) // PORT C PIN 1
 volatile uint8_t flag=0;
@@ -132,15 +131,7 @@ uint8_t ADC0_Read(){
 
 void ADC0_IRQHandler(){
 	analog_input = (uint8_t) ADC0->R[0];
-	if(analog_input<=23){
-	UART0_Transmit('@');
-	}
-	else if(analog_input>23&&analog_input<=44){
-		UART0_Transmit('&');
-	}
-	else if(analog_input>44){
-		UART0_Transmit('%');
-	}
+	
 	flag=1;
 	ADC0->SC1[0] &= ~ADC_SC1_AIEN_MASK;
 }

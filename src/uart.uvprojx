@@ -385,19 +385,14 @@
           <GroupName>Source Group 1</GroupName>
           <Files>
             <File>
-              <FileName>main.c</FileName>
+              <FileName>adc.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\main.c</FilePath>
+              <FilePath>.\adc.c</FilePath>
             </File>
             <File>
-              <FileName>Adc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Adc.c</FilePath>
-            </File>
-            <File>
-              <FileName>Adc.h</FileName>
+              <FileName>adc.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\Adc.h</FilePath>
+              <FilePath>.\adc.h</FilePath>
             </File>
             <File>
               <FileName>ClockSettings.c</FileName>
@@ -418,6 +413,11 @@
               <FileName>gpio.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\gpio.h</FilePath>
+            </File>
+            <File>
+              <FileName>main.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\main.c</FilePath>
             </File>
             <File>
               <FileName>Pit.c</FileName>

@@ -1,37 +1,29 @@
-#include "Adc.h"
-#include "uart.h"
-#include "Pit.h"
-#include "gpio.h"
-#include "Pwm.h"
 #include "ClockSettings.h"
-#include <math.h>
-#define VREF 3.3  // Example reference voltage in volts
-#define SPL_REF 94.0 
+#include "Pwm.h"
+#include "Pit.h"
+#include "adc.h"
+#include "gpio.h"
+#include "uart.h"
+
+
 int main() {
-	//SystemClock_Configure();
-  //SystemClockTick_Configure();
+	
+	SystemClock_Configure();
+	SystemClockTick_Configure();
 	OutputPIN_Init();
-	UART0_Initialize(115200);
+	TPM2_Init();
+	UART0_Init(115200);
 	ADC0_Init();
 	PIT_Init();
-
-  //TPM0_Init();
-	for(;;) {
-		
+	
+	for(;;){
 		if(flag){
 	  	int i;
 				char v[8];
 				int count = 0;
 				int value;
 
-				// Converteste valoarea analoga in decibeli
-				float voltage = (float)analog_input;
-
-				// Calculate Sound Pressure Level in dB
-				//float dbValue = SPL_REF + 20 * log10(voltage / VREF);
-
-				// Rotunjeste valoarea
-				value = (int)voltage;
+				value = (int)analog_input;
 				
 				// Afiseaza valoarea obtinuta
 				UART0_Transmit('S');
@@ -59,11 +51,18 @@ int main() {
 				
 				
 				flag=0;
-				}
-//			if(flag_1s){
-//				Signal_Control();
-//				flag_1s = 0U;
-//			}
+		}
+		if(flag_1s){
+			if(analog_input<23)
+			{Signal_Control(0);}
+			else if(analog_input>=23&analog_input<46)
+			{
+				Signal_Control(1);
+			}
+			else if(analog_input>46){
+				Signal_Control(2);
+			}
+			flag_1s = 0U;
 		}
 	}
-	
+}

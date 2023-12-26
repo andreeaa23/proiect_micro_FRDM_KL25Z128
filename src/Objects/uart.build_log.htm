@@ -22,16 +22,76 @@ Dialog DLL:      TARMCM1.DLL V1.14.6.0
  
 <h2>Project:</h2>
 D:\anul 4\micro\proiect\proiect_micro_FRDM_KL25Z128\src\uart.uvprojx
-Project File Date:  12/16/2023
+Project File Date:  12/26/2023
 
 <h2>Output:</h2>
 *** Using Compiler 'V6.19', folder: 'C:\Keil_v5\ARM\ARMCLANG\Bin'
 Rebuild target 'Target 1'
 Pwm.c(3): warning: // comments are not allowed in this language [-Wcomment]
-#define OSCILLOSCOPE_PIN (5) // PORT A , PIN 1
-                             ^
+#define SERVO_PIN (1) // PORT A , PIN 1
+                      ^
 1 warning generated.
 compiling Pwm.c...
+gpio.c(1): warning: In file included from...
+./gpio.h(4): warning: no newline at end of file [-Wnewline-eof]
+void Control_RGB_LEDs(uint8_t red, uint8_t green, uint8_t blue);
+                                                                ^
+gpio.c(2): warning: In file included from...
+./uart.h(3): warning: // comments are not allowed in this language [-Wcomment]
+void UART0_Transmit(uint8_t data); // Functie folostia pentru a trimite un octet catre interfata UART
+                                   ^
+./uart.h(7): warning: no newline at end of file [-Wnewline-eof]
+void UART0_Init(uint32_t baud_rate);
+                                    ^
+gpio.c(5): warning: // comments are not allowed in this language [-Wcomment]
+#define RED_LED_PIN (18) // PORT B
+                         ^
+4 warnings generated.
+compiling gpio.c...
+adc.c(1): warning: In file included from...
+./adc.h(9): warning: no newline at end of file [-Wnewline-eof]
+extern uint8_t analog_input;
+                            ^
+adc.c(3): warning: // comments are not allowed in this language [-Wcomment]
+#define ADC_CHANNEL (11) // PORT C PIN 1
+                         ^
+adc.c(71): warning: mixing declarations and code is a C99 extension [-Wdeclaration-after-statement]
+        uint16_t calibration_var = 0x0000;
+                 ^
+3 warnings generated.
+compiling adc.c...
+uart.c(1): warning: In file included from...
+./uart.h(3): warning: // comments are not allowed in this language [-Wcomment]
+void UART0_Transmit(uint8_t data); // Functie folostia pentru a trimite un octet catre interfata UART
+                                   ^
+./uart.h(7): warning: no newline at end of file [-Wnewline-eof]
+void UART0_Init(uint32_t baud_rate);
+                                    ^
+uart.c(7): warning: // comments are not allowed in this language [-Wcomment]
+        //Punem in asteptare pana cand registrul de transmisie a datelor nu este gol
+        ^
+uart.c(8): warning: while loop has empty body [-Wempty-body]
+        while(!(UART0->S1 & UART0_S1_TDRE_MASK));
+                                                ^
+uart.c(8): note: put the semicolon on a separate line to silence this warning
+uart.c(16): warning: while loop has empty body [-Wempty-body]
+        while(!(UART0->S1 & UART0_S1_RDRF_MASK));
+                                                ^
+uart.c(16): note: put the semicolon on a separate line to silence this warning
+uart.c(46): warning: mixing declarations and code is a C99 extension [-Wdeclaration-after-statement]
+        uint32_t osr = 15; // Over-Sampling Rate (numarul de esantioane luate per bit-time)
+                 ^
+uart.c(96): warning: no newline at end of file [-Wnewline-eof]
+}
+ ^
+uart.c(3): warning: no previous extern declaration for non-static variable 'c' [-Wmissing-variable-declarations]
+char c;
+     ^
+uart.c(3): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+char c;
+^
+8 warnings generated.
+compiling uart.c...
 ClockSettings.c(19): warning: // comments are not allowed in this language [-Wcomment]
         // MCGOUTCLOCK are ca si iesire, selectia FLL
         ^
@@ -67,86 +127,63 @@ uint16_t tick_1s;
 ^
 6 warnings generated.
 compiling ClockSettings.c...
-Adc.c(1): warning: In file included from...
-./Adc.h(9): warning: no newline at end of file [-Wnewline-eof]
-extern uint8_t analog_input;
-                            ^
-Adc.c(2): warning: non-portable path to file '"uart.h"'; specified path differs in case from file name on disk [-Wnonportable-include-path]
-#include "Uart.h"
-         ^~~~~~~~
-         "uart.h"
-Adc.c(4): warning: // comments are not allowed in this language [-Wcomment]
-#define ADC_CHANNEL (11) // PORT C PIN 1
-                         ^
-Adc.c(72): warning: mixing declarations and code is a C99 extension [-Wdeclaration-after-statement]
-        uint16_t calibration_var = 0x0000;
-                 ^
-4 warnings generated.
-compiling Adc.c...
 Pit.c(1): warning: In file included from...
 ./Pit.h(3): warning: // comments are not allowed in this language [-Wcomment]
 void PIT_Init(void); // Functie de initializarea a modulului periferic
                      ^
-./Pit.h(5): warning: no newline at end of file [-Wnewline-eof]
-uint8_t UTILS_PrintTimer(uint32_t value); // Functie menita sa printeze o valoare numarata in formatul MM:SS
-                                                                                                            ^
+./Pit.h(4): warning: no newline at end of file [-Wnewline-eof]
+void PIT_IRQHandler(void); // Functia de tratarea a intreruperilor pentru perifericul PIT
+                                                                                         ^
 Pit.c(2): warning: In file included from...
-./gpio.h(7): warning: no newline at end of file [-Wnewline-eof]
-void InitPIT(void);
-                   ^
-Pit.c(3): warning: no previous extern declaration for non-static variable 'ledState' [-Wmissing-variable-declarations]
+./gpio.h(4): warning: no newline at end of file [-Wnewline-eof]
+void Control_RGB_LEDs(uint8_t red, uint8_t green, uint8_t blue);
+                                                                ^
+Pit.c(4): warning: no previous extern declaration for non-static variable 'ledState' [-Wmissing-variable-declarations]
 uint8_t ledState = 0;
         ^
-Pit.c(3): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+Pit.c(4): note: declare 'static' if the variable is not intended to be used outside of this translation unit
 uint8_t ledState = 0;
 ^
-Pit.c(6): warning: // comments are not allowed in this language [-Wcomment]
+Pit.c(7): warning: // comments are not allowed in this language [-Wcomment]
         // Activarea semnalului de ceas pentru perifericul PIT
         ^
-Pit.c(64): warning: no newline at end of file [-Wnewline-eof]
+Pit.c(69): warning: no newline at end of file [-Wnewline-eof]
 }
  ^
 6 warnings generated.
 compiling Pit.c...
-uart.c(4): warning: // comments are not allowed in this language [-Wcomment]
-        // Utilizam masca TDRE pentru a verifica
-        ^
-1 warning generated.
-compiling uart.c...
-gpio.c(1): warning: In file included from...
-./gpio.h(7): warning: no newline at end of file [-Wnewline-eof]
-void InitPIT(void);
-                   ^
-gpio.c(5): warning: // comments are not allowed in this language [-Wcomment]
-#define RED_LED_PIN (18) // PORT B
-                         ^
-2 warnings generated.
-compiling gpio.c...
-main.c(1): warning: In file included from...
-./Adc.h(9): warning: no newline at end of file [-Wnewline-eof]
-extern uint8_t analog_input;
-                            ^
 main.c(3): warning: In file included from...
 ./Pit.h(3): warning: // comments are not allowed in this language [-Wcomment]
 void PIT_Init(void); // Functie de initializarea a modulului periferic
                      ^
-./Pit.h(5): warning: no newline at end of file [-Wnewline-eof]
-uint8_t UTILS_PrintTimer(uint32_t value); // Functie menita sa printeze o valoare numarata in formatul MM:SS
-                                                                                                            ^
+./Pit.h(4): warning: no newline at end of file [-Wnewline-eof]
+void PIT_IRQHandler(void); // Functia de tratarea a intreruperilor pentru perifericul PIT
+                                                                                         ^
 main.c(4): warning: In file included from...
-./gpio.h(7): warning: no newline at end of file [-Wnewline-eof]
-void InitPIT(void);
-                   ^
-main.c(8): warning: // comments are not allowed in this language [-Wcomment]
-#define VREF 3.3  // Example reference voltage in volts
-                  ^
-5 warnings generated.
+./adc.h(9): warning: no newline at end of file [-Wnewline-eof]
+extern uint8_t analog_input;
+                            ^
+main.c(5): warning: In file included from...
+./gpio.h(4): warning: no newline at end of file [-Wnewline-eof]
+void Control_RGB_LEDs(uint8_t red, uint8_t green, uint8_t blue);
+                                                                ^
+main.c(6): warning: In file included from...
+./uart.h(3): warning: // comments are not allowed in this language [-Wcomment]
+void UART0_Transmit(uint8_t data); // Functie folostia pentru a trimite un octet catre interfata UART
+                                   ^
+./uart.h(7): warning: no newline at end of file [-Wnewline-eof]
+void UART0_Init(uint32_t baud_rate);
+                                    ^
+main.c(28): warning: // comments are not allowed in this language [-Wcomment]
+                                // Afiseaza valoarea obtinuta
+                                ^
+7 warnings generated.
 compiling main.c...
 assembling startup_MKL25Z4.s...
 compiling system_MKL25Z4.c...
 linking...
-Program Size: Code=2988 RO-data=208 RW-data=0 ZI-data=376  
-".\Objects\uart.axf" - 0 Error(s), 25 Warning(s).
+Program Size: Code=3480 RO-data=212 RW-data=0 ZI-data=376  
+".\Objects\uart.axf" - 0 Error(s), 35 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -176,7 +213,7 @@ Package Vendor: Keil
       Source file:   Device/Source/ARM/startup_MKL25Z4.s
       Source file:   Device/Source/system_MKL25Z4.c
       Include file:  Device/Source/system_MKL25Z4.h
-Build Time Elapsed:  00:00:01
+Build Time Elapsed:  00:00:02
 </pre>
 </body>
 </html>

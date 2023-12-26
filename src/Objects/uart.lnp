@@ -1,8 +1,8 @@
 --cpu Cortex-M0+
-".\objects\main.o"
 ".\objects\adc.o"
 ".\objects\clocksettings.o"
 ".\objects\gpio.o"
+".\objects\main.o"
 ".\objects\pit.o"
 ".\objects\pwm.o"
 ".\objects\uart.o"
