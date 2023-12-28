@@ -1,6 +1,6 @@
 #include "adc.h"
 
-#define ADC_CHANNEL (11) // PORT C PIN 1
+#define ADC_CHANNEL (11) // PORT C PIN 2
 volatile uint8_t flag=0;
 uint8_t analog_input=0;
 

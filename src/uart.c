@@ -42,7 +42,7 @@ void UART0_Init(uint32_t baud_rate)
 	UART0->C2 &= ~((UART0_C2_RE_MASK) | (UART0_C2_TE_MASK)); 
 	
 	//Configurare Baud Rate
-	uint32_t osr = 15; // Over-Sampling Rate (numarul de esantioane luate per bit-time)
+	uint32_t osr = 4; // Over-Sampling Rate (numarul de esantioane luate per bit-time)
 	
 	//SBR - vom retine valoarea baud rate-ului calculat pe baza frecventei ceasului de sistem
 	// 	 SBR  -		b16 b15 b14 [b13 b12 b11 b10 b09		b08 b07 b06 b05 b04 b03 b02 b01] &
@@ -50,13 +50,8 @@ void UART0_Init(uint32_t baud_rate)
 	//            0   0   0    b13 b12 b11 b10 b09    0   0   0   0   0   0   0   0 >> 8
 	//   BDH  -   0   0   0    b13 b12 b11 b10 b09
 	//   BDL  -   b08 b07 b06  b05 b04 b03 b02 b01
-/*	//uint16_t sbr = (uint16_t)((DEFAULT_SYSTEM_CLOCK)/(baud_rate * (osr+1)));
-	uint8_t temp = UART0->BDH & ~(UART0_BDH_SBR(0x1F));
-	UART0->BDH = temp | UART0_BDH_SBR(((sbr & 0x1F00)>> 8));
-	UART0->BDL = (uint8_t)(sbr & UART_BDL_SBR_MASK);
-	UART0->C4 |= UART0_C4_OSR(osr);*/
 	
-	uint32_t sbr = 48000000UL / ((osr + 1)*baud_rate);
+	uint32_t sbr = 48000000UL / (osr * baud_rate / 4);
 	uint8_t temp = UART0->BDH & ~(UART0_BDH_SBR(0x1F));
 	UART0->BDH = temp | UART0_BDH_SBR(((sbr & 0x1F00)>> 8));
 	UART0->BDL = (uint8_t)(sbr & UART_BDL_SBR_MASK);
