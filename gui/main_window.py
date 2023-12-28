@@ -1,8 +1,12 @@
+import math
 from PySide6.QtWidgets import QMainWindow, QHBoxLayout, QVBoxLayout, QWidget, QGroupBox, QLabel, QPushButton, QLineEdit, QTextEdit
 from PySide6.QtGui import QIcon, QPalette, QColor, QFont
 from PySide6.QtCore import Qt
 import pyqtgraph as pg
 
+import serial
+from threading import Thread
+import time
 
 class MainWindow(QMainWindow):
     promotie: str = "2023-2024"
@@ -16,6 +20,9 @@ class MainWindow(QMainWindow):
         self.setWindowTitle(f"Proiect Microprocesoare {self.promotie}")
         self.setWindowIcon(QIcon("./icon.png"))
 
+        self.serial_port = None
+        self.recording = False
+        self.time_counter = 0.0
         primary_layout = QVBoxLayout()
         secondary_layout = QHBoxLayout()
         tertiary_layout = QVBoxLayout()
@@ -35,17 +42,17 @@ class MainWindow(QMainWindow):
         control_panel_box = QGroupBox("Control Panel")
         control_panel_box.setFont(bold_font)
 
-        button1 = QPushButton("Control 1")
-        button2 = QPushButton("Control 2")
+        button1 = QPushButton("Start Recording")
+        button1.clicked.connect(self.start_stop_recording)
+       
         button3 = QPushButton("Send")
         button3.clicked.connect(self.send_input)
         self.line_edit = QLineEdit()
         self.line_edit.setAlignment(Qt.AlignmentFlag.AlignBottom)
-        line_edit_label = QLabel("Input:", parent=self.line_edit)
+        line_edit_label = QLabel("COM Port:", parent=self.line_edit)
         control_panel_box_layout = QVBoxLayout()
         control_panel_box_layout.setSpacing(5)
         control_panel_box_layout.addWidget(button1, 1)
-        control_panel_box_layout.addWidget(button2, 1)
 
         control_panel_box_layout.addStretch()
         control_panel_box_layout.addWidget(line_edit_label)
@@ -57,13 +64,8 @@ class MainWindow(QMainWindow):
         tertiary_layout.addWidget(team_box, 1)
         tertiary_layout.addWidget(control_panel_box, 5)
 
-        plot_widget = pg.PlotWidget()
-        hour = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-        temperature = [30, 32, 34, 32, 33, 31, 29, 32, 35, 45]
-
-        plot_widget.plot(hour, temperature)
-
-        secondary_layout.addWidget(plot_widget, 3)
+        self.plot_widget = pg.PlotWidget()
+        secondary_layout.addWidget(self.plot_widget, 3)
         secondary_layout.addLayout(tertiary_layout, 1)
 
         primary_layout.addLayout(secondary_layout, 4)
@@ -82,7 +84,36 @@ class MainWindow(QMainWindow):
 
         self.setCentralWidget(widget)
 
+    def start_stop_recording(self):
+        if self.recording:
+            self.recording = False
+            self.text_edit.insertPlainText("Recording stopped.\n")
+            self.serial_port.close()
+        else:
+            com_port = self.line_edit.text()
+            
+            self.serial_port = serial.Serial(port=com_port, baudrate=115200, timeout=0.5)
+            self.recording = True
+            self.text_edit.insertPlainText("Recording started.\n")
+                # Start a thread to continuously read data from the serial port
+            Thread(target=self.read_serial_data).start()
+            
+
+    def read_serial_data(self):
+        while self.recording:
+            try:
+                data = self.serial_port.readline().decode("utf-8").strip()
+                # Assuming data is a single numerical value received from the sensor
+                value = float(data)
+                db_value = 20 * math.log10(value)
+                
+                self.plot_widget.plot([self.time_counter], [db_value], pen=(255, 0, 0), symbol='o')
+                self.time_counter += 0.5  
+                time.sleep(0.1)  # Adjust the sleep duration based on the sensor's update rate
+            except (ValueError, UnicodeDecodeError):
+                pass
+
     def send_input(self):
-        input = self.line_edit.text()
+        input_data = self.line_edit.text()
         self.line_edit.clear()
-        self.text_edit.insertPlainText(f"INPUT: {input}\n")
+        self.text_edit.insertPlainText(f"INPUT: {input_data}\n")
