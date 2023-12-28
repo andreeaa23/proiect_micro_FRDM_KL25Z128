@@ -18,7 +18,8 @@ int main() {
 	
 	for(;;){
 		if(flag){
-	  	int i;
+			
+	  	  int i;
 				char v[8];
 				int count = 0;
 				int value;
@@ -52,11 +53,12 @@ int main() {
 				
 				flag=0;
 		}
+		
 		if(flag_1s){
-			if(analog_input<23)
-			{Signal_Control(0);}
-			else if(analog_input>=23&analog_input<46)
-			{
+			if(analog_input<23){
+				Signal_Control(0);
+			}
+			else if(analog_input>=23&analog_input<46){
 				Signal_Control(1);
 			}
 			else if(analog_input>46){

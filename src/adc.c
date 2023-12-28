@@ -3,6 +3,7 @@
 #define ADC_CHANNEL (11) // PORT C PIN 1
 volatile uint8_t flag=0;
 uint8_t analog_input=0;
+
 void ADC0_Init() {
 	
 	// Activarea semnalului de ceas pentru modulul periferic ADC
