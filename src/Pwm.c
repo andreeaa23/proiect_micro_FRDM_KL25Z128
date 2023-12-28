@@ -2,7 +2,6 @@
 
 #define SERVO_PIN (1) // PORT A , PIN 1
 #define SCOPE_PIN_TPM2_CH0 (2) //port b pin2
-#define INCREMENT_ANGLE (37)
 
 void TPM2_Init(){
 	
