@@ -9,7 +9,7 @@
 
 void OutputPIN_Init(void){
 	
-		SIM_SCGC5 |= SIM_SCGC5_PORTB_MASK | SIM_SCGC5_PORTD_MASK;
+	SIM_SCGC5 |= SIM_SCGC5_PORTB_MASK | SIM_SCGC5_PORTD_MASK;
 	
 	// --- RED LED ---
 	
@@ -37,7 +37,7 @@ void OutputPIN_Init(void){
 	
 	// --- BLUE LED ---
 	
-		// Utilizare GPIO ca varianta de multiplexare
+	// Utilizare GPIO ca varianta de multiplexare
 	PORTD->PCR[BLUE_LED_PIN] &= ~PORT_PCR_MUX_MASK;
 	PORTD->PCR[BLUE_LED_PIN] |= PORT_PCR_MUX(1);
 	
