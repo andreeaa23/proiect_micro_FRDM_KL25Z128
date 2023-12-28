@@ -1,7 +1,9 @@
 #include "Pit.h"
 #include "gpio.h"
 #include "Pwm.h"
+
 uint8_t ledState = 0;
+
 void PIT_Init(void) {
 	
 	// Activarea semnalului de ceas pentru perifericul PIT
