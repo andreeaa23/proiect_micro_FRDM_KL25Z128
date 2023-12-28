@@ -7,7 +7,6 @@
 #define BLUE_LED_PIN (1) // PORT D
 
 
-
 void OutputPIN_Init(void){
 	
 		SIM_SCGC5 |= SIM_SCGC5_PORTB_MASK | SIM_SCGC5_PORTD_MASK;
@@ -48,13 +47,6 @@ void OutputPIN_Init(void){
 	// Stingerea LED-ului (punerea pe 0 logic)
 	GPIOD_PSOR |= (1<<BLUE_LED_PIN);  //set e stins
 	
-	// ---- BLACK LED ----
-	
-	// Utilizare GPIO ca varianta de multiplexare
-
-	
-	// Initialize PIT
- 
 }
 
 
@@ -63,21 +55,24 @@ void Control_RGB_LEDs(uint8_t red, uint8_t green, uint8_t blue) {
     // Setare sau stinge LED-ul rosu
     if (red) {
         GPIOB_PCOR |= (1 << RED_LED_PIN);  // Seteaza pinul
-    } else {
+    } 
+		else {
         GPIOB_PSOR |= (1 << RED_LED_PIN);  // Stinge pinul
     }
 
     // Setare sau stinge LED-ul verde
     if (green) {
         GPIOB_PCOR |= (1 << GREEN_LED_PIN);  // Seteaza pinul
-    } else {
+    } 
+		else {
         GPIOB_PSOR |= (1 << GREEN_LED_PIN);  // Stinge pinul
     }
 
     // Setare sau stinge LED-ul albastru
     if (blue) {
         GPIOD_PCOR |= (1 << BLUE_LED_PIN);  // Seteaza pinul
-    } else {
+    } 
+		else {
         GPIOD_PSOR |= (1 << BLUE_LED_PIN);  // Stinge pinul
     }
 

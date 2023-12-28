@@ -6,7 +6,6 @@
 
 void TPM2_Init(){
 	
-	
 	// Activarea semnalului de ceas pentru utilizarea LED-ului de culoare rosie
 	SIM->SCGC5 |= SIM_SCGC5_PORTA_MASK | SIM_SCGC5_PORTB_MASK;
 	
@@ -66,7 +65,7 @@ void Signal_Control(uint8_t position){
 	// Resetarea valorii numaratorului asociat LPTPM Counter
 	   TPM2->MOD = 7500;  // 375,000 Hz / 7500 = 50 Hz (20 ms)
 
-    // Setarea duty cycle-ului pentru 3 pozi?ii
+    // Setarea duty cycle-ului pentru 3 pozitii
     switch (position) {
         case 0:
             TPM2->CONTROLS[0].CnV = 188;  // 2.5% pentru 0°
@@ -78,6 +77,4 @@ void Signal_Control(uint8_t position){
             TPM2->CONTROLS[0].CnV = 937;  // 12.5% pentru 180°
             break;
     }
-
-    
 }

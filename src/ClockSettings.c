@@ -60,6 +60,7 @@ void SysTick_Handler(void) {
 		
 		++tick_50ms;
 	}
+	
 	if(tick_50ms >= 2U) {
 		
 		tick_50ms = 0U;
@@ -67,6 +68,7 @@ void SysTick_Handler(void) {
 		
 		++tick_100ms;
 	}
+	
 	if(tick_100ms >= 5U) {
 		
 		tick_100ms = 0U;
@@ -74,16 +76,18 @@ void SysTick_Handler(void) {
 		
 		++tick_500ms;
 	}
+	
 	if(tick_500ms >= 2U) {
+		
 		tick_500ms = 0U;
 		flag_1s = 1U;
 		
 		++tick_1s;
 	}
+	
 	if(tick_1s >= 5U) {
+		
 		tick_1s = 0U;
 		flag_5s = 1U;
 	}
-	
-	
 }

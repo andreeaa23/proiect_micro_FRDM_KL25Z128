@@ -39,7 +39,6 @@ void UART0_Init(uint32_t baud_rate)
 	PORTA->PCR[2] = PORT_PCR_ISF_MASK | PORT_PCR_MUX(2); // Configurare TX pentru UART0
 	
 	
-	
 	UART0->C2 &= ~((UART0_C2_RE_MASK) | (UART0_C2_TE_MASK)); 
 	
 	//Configurare Baud Rate
@@ -79,6 +78,7 @@ void UART0_Init(uint32_t baud_rate)
 	NVIC_EnableIRQ(UART0_IRQn);
 	
 }
+
 void UART0_IRQHandler(void) {
 
 		if(UART0->S1 & UART0_S1_RDRF_MASK) {
@@ -87,9 +87,11 @@ void UART0_IRQHandler(void) {
 			
 		if(c >= 'a' && c <= 'z') {
 			UART0_Transmit(c - 'a' + 'A');
-		} else if ( c >= 'A' && c <= 'Z') {
+		} 
+		else if ( c >= 'A' && c <= 'Z') {
 			UART0_Transmit(c - 'A' + 'a');
-		} else if(c == 0X0D) {
+		} 
+		else if(c == 0X0D) {
 			UART0_Transmit(0X0D);
 			UART0_Transmit(0X0A);
 		}
