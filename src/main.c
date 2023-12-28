@@ -55,13 +55,13 @@ int main() {
 		}
 		
 		if(flag_1s){
-			if(analog_input<23){
+			if(analog_input < 23){
 				Signal_Control(0);
 			}
-			else if(analog_input>=23&analog_input<46){
+			else if(analog_input >= 23 & analog_input < 46){
 				Signal_Control(1);
 			}
-			else if(analog_input>46){
+			else if(analog_input > 46){
 				Signal_Control(2);
 			}
 			flag_1s = 0U;
