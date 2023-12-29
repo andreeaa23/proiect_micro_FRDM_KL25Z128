@@ -14,7 +14,7 @@ void ADC0_Init() {
 	
 	ADC0->CFG1 = 0x00;
 
-	// Selectarea modului de conversie pe 16 biti single-ended --> MODE
+	// Selectarea modului de conversie pe 8 biti single-ended --> MODE
 	// Selectarea sursei de ceas pentru generarea ceasului intern --> ADICLK
 	// Selectarea ratei de divizare folosit de periferic pentru generarea ceasului intern --> ADIV
 	// Set ADC clock frequency fADCK less than or equal to 4 MHz (PG. 494)
@@ -44,7 +44,7 @@ int ADC0_Calibrate() {
 	
 	// ===== For best calibration results =====
 	
-	ADC0_CFG1 |= ADC_CFG1_MODE(0)  |  				 // 16 bits mode
+	ADC0_CFG1 |= ADC_CFG1_MODE(0)  |  				 // 8 bits mode
                 ADC_CFG1_ADICLK(1)|  // Input Bus Clock divided by 2
                 ADC_CFG1_ADIV(3);   // Clock divide by 8
 	

@@ -59,6 +59,7 @@ void TPM2_Init(){
 	
 	
 }
+
 void Signal_Control(uint8_t position){
     
 	// Resetarea valorii numaratorului asociat LPTPM Counter
