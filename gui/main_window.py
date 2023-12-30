@@ -8,6 +8,9 @@ import serial
 from threading import Thread
 import time
 
+from pyqtgraph import BarGraphItem
+
+
 class MainWindow(QMainWindow):
     promotie: str = "2023-2024"
     team: list[str] = [
@@ -23,6 +26,7 @@ class MainWindow(QMainWindow):
         self.serial_port = None
         self.recording = False
         self.time_counter = 0.0
+        
         primary_layout = QVBoxLayout()
         secondary_layout = QHBoxLayout()
         tertiary_layout = QVBoxLayout()
@@ -83,6 +87,11 @@ class MainWindow(QMainWindow):
         widget.setLayout(primary_layout)
 
         self.setCentralWidget(widget)
+        self.bars = [
+            BarGraphItem(x=[i], height=[0], width=0.5, brush=(0, 255, 0, 150)) for i in range(3)
+        ]
+        for bar in self.bars:
+            self.plot_widget.addItem(bar)
 
     def start_stop_recording(self):
         if self.recording:
@@ -100,18 +109,37 @@ class MainWindow(QMainWindow):
             
 
     def read_serial_data(self):
+        min_value, max_value = float('inf'), float('-inf')
+
         while self.recording:
             try:
                 data = self.serial_port.readline().decode("utf-8").strip()
                 # Assuming data is a single numerical value received from the sensor
                 value = float(data)
-                db_value = 20 * math.log10(value)
-                
-                self.plot_widget.plot([self.time_counter], [db_value], pen=(255, 0, 0), symbol='o')
-                self.time_counter += 0.5  
-                time.sleep(0.1)  # Adjust the sleep duration based on the sensor's update rate
+                db_value = value
+                self.text_edit.insertPlainText(f"{self.time_counter} {db_value}\n")
+
+                min_value = min(min_value, db_value)
+                max_value = max(max_value, db_value)
+
+                # Update the thresholds dynamically
+                threshold_low_medium = min_value + (max_value - min_value) / 3
+                threshold_medium_high = min_value + 2 * (max_value - min_value) / 3
+
+                # Update the corresponding bar plot based on the value
+                if db_value < threshold_low_medium:
+                    self.bars[0].setOpts(x=[0], height=[db_value], brush=(0, 255, 0, 150))
+                elif db_value < threshold_medium_high:
+                    self.bars[1].setOpts(x=[1], height=[db_value], brush=(255, 255, 0, 150))
+                else:
+                    self.bars[2].setOpts(x=[2], height=[db_value], brush=(255, 0, 0, 150))
+
+                self.time_counter += 0.5
+                time.sleep(0.5)  # Adjust the sleep duration based on the sensor's update rate
             except (ValueError, UnicodeDecodeError):
                 pass
+
+
 
     def send_input(self):
         input_data = self.line_edit.text()
