@@ -3,6 +3,7 @@
 #include "Pwm.h"
 
 uint8_t ledState = 0;
+volatile uint8_t flag_swich=0;
 
 void PIT_Init(void) {
 	
@@ -40,6 +41,8 @@ void PIT_IRQHandler(void) {
 	if(PIT->CHANNEL[1].TFLG & PIT_TFLG_TIF_MASK){
 		PIT->CHANNEL[1].TFLG &= PIT_TFLG_TIF_MASK;
 		
+	
+	if(flag_swich==0){
 		switch (ledState) {
 					case 0: // Red
 							Control_RGB_LEDs(1, 0, 0);
@@ -54,6 +57,23 @@ void PIT_IRQHandler(void) {
 							Control_RGB_LEDs(0, 0, 0);
 							break;
     }
+	}
+	else{
+		switch (ledState) {
+					case 0: // blue
+							Control_RGB_LEDs(0, 0, 1);
+							break;
+					case 1: // Green
+							Control_RGB_LEDs(0, 1, 0);
+							break;
+					case 2: // red
+							Control_RGB_LEDs(1, 0, 0);
+							break;
+					default: // Turn off LEDs -- Black
+							Control_RGB_LEDs(0, 0, 0);
+							break;
+    }	
+	}
 		
     // Increment LED state
     ledState++;

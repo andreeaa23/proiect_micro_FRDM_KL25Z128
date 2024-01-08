@@ -1,18 +1,17 @@
 #include "Pwm.h"
 
-#define SERVO_PIN (1) // PORT A , PIN 1
-#define SCOPE_PIN_TPM2_CH0 (2) //port b pin2
+#define SERVO_PIN (2) // PORT B, PIN 2
 
 void TPM2_Init(){
 	
 	// Activarea semnalului de ceas pentru utilizarea LED-ului de culoare rosie
-	SIM->SCGC5 |= SIM_SCGC5_PORTA_MASK | SIM_SCGC5_PORTB_MASK;
+	SIM->SCGC5 |= SIM_SCGC5_PORTB_MASK;
 	
 	// Utilizarea alternativei de functionare pentru perifericul TMP
 	// TMP2_CH0
-	PORTA->PCR[SERVO_PIN] |= PORT_PCR_MUX(3);
+	PORTB->PCR[SERVO_PIN] |= PORT_PCR_MUX(3);
 	
-	PORTB->PCR[SCOPE_PIN_TPM2_CH0] |= PORT_PCR_MUX(3);
+
 	// Selects the clock source for the TPM counter clock (MCGFLLCLK) - PG. 196
 	// MCGFLLCLK Freq. - 20 MHz
 	SIM->SOPT2 |= SIM_SOPT2_TPMSRC(1);

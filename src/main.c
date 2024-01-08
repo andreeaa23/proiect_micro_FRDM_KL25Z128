@@ -25,12 +25,6 @@ int main() {
 				int value;
 
 				value = (int)analog_input;
-				
-				// Afiseaza valoarea obtinuta
-				UART0_Transmit('S');
-				UART0_Transmit('N');
-				UART0_Transmit('D');
-				UART0_Transmit(':');
 
 				for (i = 0; i < 8; i++) {
 						v[i] = '-';
@@ -54,7 +48,7 @@ int main() {
 				flag=0;
 		}
 		
-		if(flag_1s){
+		if(flag_500ms){
 			if(analog_input < 23){
 				Signal_Control(0);
 			}
