@@ -58,6 +58,13 @@ class MainWindow(QMainWindow):
         control_panel_box_layout.setSpacing(5)
         control_panel_box_layout.addWidget(button1, 1)
 
+        # Create the "Switch" button
+        switch_button = QPushButton("Switch")
+        switch_button.clicked.connect(self.switch_action)
+
+        # Add the "Switch" button to the control panel box layout
+        control_panel_box_layout.addWidget(switch_button, 1)
+
         control_panel_box_layout.addStretch()
         control_panel_box_layout.addWidget(line_edit_label)
         control_panel_box_layout.addWidget(self.line_edit, 1)
@@ -145,3 +152,15 @@ class MainWindow(QMainWindow):
         input_data = self.line_edit.text()
         self.line_edit.clear()
         self.text_edit.insertPlainText(f"INPUT: {input_data}\n")
+    
+    def switch_action(self):
+        if self.recording:
+            # Only send the "S" value if recording is active
+            try:
+                # Send "S" through the serial port
+                self.serial_port.write(b"S")
+                self.text_edit.insertPlainText("Switch command sent.\n")
+            except Exception as e:
+                self.text_edit.insertPlainText(f"Error sending switch command: {e}\n")
+        else:
+            self.text_edit.insertPlainText("Cannot send switch command while recording is stopped.\n")

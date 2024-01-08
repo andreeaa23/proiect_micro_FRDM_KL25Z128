@@ -1,5 +1,5 @@
 #include "uart.h"
-
+#include "Pit.h"
 char c;
 
 void UART0_Transmit(uint8_t data)
@@ -51,7 +51,7 @@ void UART0_Init(uint32_t baud_rate)
 	//   BDH  -   0   0   0    b13 b12 b11 b10 b09
 	//   BDL  -   b08 b07 b06  b05 b04 b03 b02 b01
 	
-	uint32_t sbr = 48000000UL / (osr * baud_rate / 4);
+	uint32_t sbr = 48000000UL / ((osr*4) * baud_rate);
 	uint8_t temp = UART0->BDH & ~(UART0_BDH_SBR(0x1F));
 	UART0->BDH = temp | UART0_BDH_SBR(((sbr & 0x1F00)>> 8));
 	UART0->BDL = (uint8_t)(sbr & UART_BDL_SBR_MASK);
@@ -75,9 +75,15 @@ void UART0_Init(uint32_t baud_rate)
 }
 
 void UART0_IRQHandler(void) {
-
+	
 		if(UART0->S1 & UART0_S1_RDRF_MASK) {
 			c = UART0->D;
+			if(flag_swich==0){
+				flag_swich=1;
+			}
+			else{
+				flag_swich=0;
+			}
 		}
 			
 		if(c >= 'a' && c <= 'z') {

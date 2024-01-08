@@ -15,7 +15,6 @@ volatile uint8_t flag_5s;
 
 void SystemClock_Configure(void) {
 	
-	
 	// MCGOUTCLOCK are ca si iesire, selectia FLL
 	MCG->C1 |= MCG_C1_CLKS(0);
 	
