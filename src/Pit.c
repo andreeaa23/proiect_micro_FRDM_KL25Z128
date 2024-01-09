@@ -15,7 +15,7 @@ void PIT_Init(void) {
 	PIT->MCR |= PIT_MCR_FRZ_MASK;
 	// Setarea valoarea numaratorului de pe canalul 0 la o perioada de 1,119 secunde pt led-uri
 	PIT->CHANNEL[1].LDVAL = 56879999;
-	//jumatate de secuda pentru adc
+	//jumatate de secuda pentru captarea datelor de la senzorul de sunet(ADC)
 	PIT->CHANNEL[0].LDVAL = 23999999;
 	
   // Activarea întreruperilor pe canalul 0 si 1
@@ -33,7 +33,7 @@ void PIT_Init(void) {
 }
 
 void PIT_IRQHandler(void) {
-	
+	//verificam pe ce canal s-a declansat intreruperea
 	if(PIT->CHANNEL[0].TFLG & PIT_TFLG_TIF_MASK) {
 		ADC0->SC1[0] |= ADC_SC1_AIEN_MASK;
 		PIT->CHANNEL[0].TFLG &= PIT_TFLG_TIF_MASK;
@@ -41,8 +41,8 @@ void PIT_IRQHandler(void) {
 	if(PIT->CHANNEL[1].TFLG & PIT_TFLG_TIF_MASK){
 		PIT->CHANNEL[1].TFLG &= PIT_TFLG_TIF_MASK;
 		
-	
-	if(flag_swich==0){
+	//gestionarea culorilor secventei de led-uri
+	if(flag_swich==0){ // secventa normala
 		switch (ledState) {
 					case 0: // Red
 							Control_RGB_LEDs(1, 0, 0);
@@ -59,7 +59,7 @@ void PIT_IRQHandler(void) {
     }
 	}
 	else{
-		switch (ledState) {
+		switch (ledState) { //secventa inversata
 					case 0: // blue
 							Control_RGB_LEDs(0, 0, 1);
 							break;

@@ -27,8 +27,8 @@ Project File Date:  01/08/2024
 <h2>Output:</h2>
 *** Using Compiler 'V6.21', folder: 'C:\Keil_v5\ARM\ARMCLANG\Bin'
 Rebuild target 'Target 1'
-ClockSettings.c(19): warning: // comments are not allowed in this language [-Wcomment]
-   19 |         // MCGOUTCLOCK are ca si iesire, selectia FLL
+ClockSettings.c(18): warning: // comments are not allowed in this language [-Wcomment]
+   18 |         // MCGOUTCLOCK are ca si iesire, selectia FLL
       |         ^
 ClockSettings.c(3): warning: no previous extern declaration for non-static variable 'base_tick' [-Wmissing-variable-declarations]
     3 | uint16_t base_tick;
@@ -168,14 +168,14 @@ main.c(9): warning: a function declaration without a prototype is deprecated in 
     9 | int main() {
       |         ^
       |          void
-main.c(33): warning: unsafe buffer access [-Wunsafe-buffer-usage]
-   33 |                                                 v[i] = '-';
+main.c(30): warning: unsafe buffer access [-Wunsafe-buffer-usage]
+   30 |                                                 v[i] = '-';
       |                                                 ^
-main.c(37): warning: unsafe buffer access [-Wunsafe-buffer-usage]
-   37 |                                                 v[count] = (char)(value % 10) + 0x30;
+main.c(34): warning: unsafe buffer access [-Wunsafe-buffer-usage]
+   34 |                                                 v[count] = (char)(value % 10) + 0x30;
       |                                                 ^
-main.c(43): warning: unsafe buffer access [-Wunsafe-buffer-usage]
-   43 |                                                 UART0_Transmit(v[count - i - 1]);
+main.c(40): warning: unsafe buffer access [-Wunsafe-buffer-usage]
+   40 |                                                 UART0_Transmit(v[count - i - 1]);
       |                                                                ^
 10 warnings generated.
 compiling main.c...
@@ -205,8 +205,8 @@ Pit.c(21): warning: invalid UTF-8 in comment [-Winvalid-utf8]
 Pit.c(29): warning: invalid UTF-8 in comment [-Winvalid-utf8]
    29 |         // Activarea <EE>ntreruperii mascabile si setarea prioritatiis
       |                      ^
-Pit.c(87): warning: no newline at end of file [-Wnewline-eof]
-   87 | }
+Pit.c(86): warning: no newline at end of file [-Wnewline-eof]
+   86 | }
       |  ^
 Pit.c(17): warning: unsafe buffer access [-Wunsafe-buffer-usage]
    17 |         PIT->CHANNEL[1].LDVAL = 56879999;
@@ -243,21 +243,21 @@ compiling Pit.c...
 Pwm.c(3): warning: // comments are not allowed in this language [-Wcomment]
     3 | #define SERVO_PIN (2) // PORT B, PIN 2
       |                       ^
-Pwm.c(6): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
-    6 | void TPM2_Init(){
+Pwm.c(5): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+    5 | void TPM2_Init(){
       |               ^
       |                void
-Pwm.c(71): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-   71 |             TPM2->CONTROLS[0].CnV = 188;  // 2.5% pentru 0<B0>
+Pwm.c(70): warning: invalid UTF-8 in comment [-Winvalid-utf8]
+   70 |             TPM2->CONTROLS[0].CnV = 188;  // 2.5% pentru 0<B0>
       |                                                           ^
-Pwm.c(74): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-   74 |             TPM2->CONTROLS[0].CnV = 562;  // 7.5% pentru 90<B0>
+Pwm.c(73): warning: invalid UTF-8 in comment [-Winvalid-utf8]
+   73 |             TPM2->CONTROLS[0].CnV = 562;  // 7.5% pentru 90<B0>
       |                                                            ^
-Pwm.c(77): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-   77 |             TPM2->CONTROLS[0].CnV = 937;  // 12.5% pentru 180<B0>
+Pwm.c(76): warning: invalid UTF-8 in comment [-Winvalid-utf8]
+   76 |             TPM2->CONTROLS[0].CnV = 937;  // 12.5% pentru 180<B0>
       |                                                              ^
-Pwm.c(13): warning: unsafe buffer access [-Wunsafe-buffer-usage]
-   13 |         PORTB->PCR[SERVO_PIN] |= PORT_PCR_MUX(3);
+Pwm.c(12): warning: unsafe buffer access [-Wunsafe-buffer-usage]
+   12 |         PORTB->PCR[SERVO_PIN] |= PORT_PCR_MUX(3);
       |         ^~~~~~~~~~
 C:/Users/dumit/AppData/Local/Arm/Packs/Keil/Kinetis_KLxx_DFP/1.15.1/Device/Include\MKL25Z4.h(4446): note: expanded from macro 'PORTB'
  4446 | #define PORTB                                    ((PORT_Type *)PORTB_BASE)
@@ -292,8 +292,8 @@ uart.c(16): note: put the semicolon on a separate line to silence this warning
 uart.c(45): warning: mixing declarations and code is a C99 extension [-Wdeclaration-after-statement]
    45 |         uint32_t osr = 4; // Over-Sampling Rate (numarul de esantioane luate per bit-time)
       |                  ^
-uart.c(101): warning: no newline at end of file [-Wnewline-eof]
-  101 | }
+uart.c(99): warning: no newline at end of file [-Wnewline-eof]
+   99 | }
       |  ^
 uart.c(3): warning: no previous extern declaration for non-static variable 'c' [-Wmissing-variable-declarations]
     3 | char c;
@@ -330,7 +330,7 @@ compiling uart.c...
 assembling startup_MKL25Z4.s...
 compiling system_MKL25Z4.c...
 linking...
-Program Size: Code=3600 RO-data=208 RW-data=0 ZI-data=376  
+Program Size: Code=3596 RO-data=208 RW-data=0 ZI-data=376  
 ".\Objects\uart.axf" - 0 Error(s), 66 Warning(s).
 
 <h2>Software Packages used:</h2>
@@ -359,9 +359,9 @@ Package Vendor: Keil
 
    * Component: Keil::Device:Startup@2.5.0
       Source file:   Device/Source/system_MKL25Z4.c
-      Source file:   Device/Source/ARM/startup_MKL25Z4.s
       Include file:  Device/Source/system_MKL25Z4.h
-Build Time Elapsed:  00:00:01
+      Source file:   Device/Source/ARM/startup_MKL25Z4.s
+Build Time Elapsed:  00:00:02
 </pre>
 </body>
 </html>

@@ -1,11 +1,9 @@
 #include "gpio.h"
 #include "uart.h"
 
-
 #define RED_LED_PIN (18) // PORT B
 #define GREEN_LED_PIN (19) // PORT B
 #define BLUE_LED_PIN (1) // PORT D
-
 
 void OutputPIN_Init(void){
 	
@@ -20,7 +18,7 @@ void OutputPIN_Init(void){
 	// Configurare pin pe post de output
 	GPIOB_PDDR |= (1<<RED_LED_PIN);
 	
-	// Stingerea LED-ului (punerea pe 0 logic)
+	// Stingerea LED-ului (punerea pe 0 logic a pinului)
 	GPIOB_PSOR |= (1<<RED_LED_PIN); 
 	
 	// --- GREEN LED ---
