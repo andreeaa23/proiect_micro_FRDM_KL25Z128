@@ -58,7 +58,7 @@ int main() {
 			else if(analog_input > 46){
 				Signal_Control(2);
 			}
-			flag_1s = 0U;
+			flag_500ms = 0U;
 		}
 	}
 }
