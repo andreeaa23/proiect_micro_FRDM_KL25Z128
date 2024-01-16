@@ -22,3 +22,6 @@ Servomotorul a fost conectat pe plăcuță astfel:
 Se compilează proiectul din qVision făcând Build la cod urmat de Load pe plăcuță, iar apoi din Python se pornește intefața grafică unde se introduce portul pe care este conectat target-ul și se apasă butonul ”Start Recording”.
 În grafic, se vor plota 3 barplot-uri ce reprezintă cele 3 intervale în care sunt valorile primite de la senzorul de sunet, ce sunt actualizate în mod dinamic.
 Pentru schimbarea secvenței GPIO de LED-uri, se va apăsa pe butonul ”Switch” ceea ce va face inversare din RGB în BGR.
+
+	Link Video:
+https://drive.google.com/file/d/18tz-RgURAEwJDJb2gQIW8dp5q6KsnwtG/view?usp=drive_link
