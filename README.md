@@ -24,4 +24,4 @@ Se compilează proiectul din qVision făcând Build la cod urmat de Load pe plă
 Pentru schimbarea secvenței GPIO de LED-uri, se va apăsa pe butonul ”Switch” ceea ce va face inversare din RGB în BGR.
 
 	Link Video:
-https://drive.google.com/file/d/18tz-RgURAEwJDJb2gQIW8dp5q6KsnwtG/view?usp=drive_link
+https://drive.google.com/file/d/1AV2U4tmoP9WBCagUG5dxubkQGCuGewPP/view?usp=drive_link
